@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.page{
+  background-image: url('https://png.pngtree.com/thumb_back/fw800/back_our/20190625/ourmid/pngtree-overlooking-desk-computer-background-illustration-image_259797.jpg');
+  height: 100%;
+  background-size: 100%;
+  padding-bottom: 50px;
+  margin-top: 0px;
+  padding-top: 0px;
+}
