@@ -30,7 +30,8 @@ class NoteList extends Component {
         this.handleFilterChange = this.handleFilterChange.bind(this);
         this.handleRemoveCategory = this.handleRemoveCategory.bind(this);
     }
-
+//Don't need bind this when we use arrow functions. 
+    
     // Code for edit help: https://stackoverflow.com/questions/57362707/reactjs-show-edit-form-onclick
     // runs handleEditNote if Edit button on any particular note is pressed
     handleSubmit(event) {
@@ -66,6 +67,14 @@ class NoteList extends Component {
     // Card Design: https://ant.design/components/card/#header
     // Dropdown Reference: https://reactjs.org/docs/forms.html 
     render() {
+        
+        /*
+        Can make props easier to read by doing the following here in render:
+        
+        const {notes} = this.props
+        Then in your return you can just reference notes instead of this.props.notes.
+        
+        */
         return (
             <div className="bottomPart" style={{ display: "flex" }}>
                 <div className="notelist" style={{ flex: 3 }}>
@@ -201,6 +210,8 @@ class NoteList extends Component {
 
                         }
 
+                        {/*The following reflects good attention to detail and thought about edge cases that might arise.
+                        Great job.*/}
                         {isEmpty(this.props.categories) &&
                         <div>
                             No categories yet. Add categories by editing an existing note or creating a new note!
