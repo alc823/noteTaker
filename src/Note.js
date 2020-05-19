@@ -19,6 +19,22 @@ class Note extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
+    
+    /*
+    If you use arrow functions throughout, you do not need to use bind this.
+    Arrow functions therefore reduce the number of lines in your code and improve
+    overall readability for another engineer who comes along to work on this file. 
+    
+    
+    I would give this file a name other than Note. Was confusing. 
+    Would call it something like NoteCreator or NewNote. 
+    
+    You did a good job deciding what parts of this app to split into separate components 
+    and what parts should stay together. For example, you kept the Make Note button together
+    with the inputs / overall form. Great job. Sometimes we have to use our best judgement
+    about how to group elements and decide ok what functionality is related enough to put
+    together. 
+    */
 
     // runs handleAddNote when "Make Note!" button is pressed
     // Code for getting current date: https://www.nicesnippets.com/blog/how-to-get-current-date-and-time-in-reactjs
@@ -96,6 +112,8 @@ class Note extends React.Component {
                 https://medium.com/zestgeek/how-to-handle-multiple-form-inputs-in-reactjs-2f68e3cf3cf8
                 https://reactjs.org/docs/forms.html
                  */}
+            
+            {/*If br used to add space after component, use margin styling instead and remove br.*/}
                 <div>
                     <br></br>
                     <br></br>
