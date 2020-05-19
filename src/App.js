@@ -4,7 +4,9 @@ import Note from "./Note.js";
 import NoteList from "./NoteList.js";
 
 class App extends Component {
-
+/*Remove extraneous comments and console.logs from final code.*/
+ //Once I create a new card, should the example card stay visible to a user? 
+  
   // Defining State
   constructor(props) {
     super(props)
@@ -20,6 +22,8 @@ class App extends Component {
     }
   }
 
+  //I don't personally use @param in my code. you can use it but not entirely necessary. 
+  
   /** handleAddNote(newNote)
    * adds a new note to the notes list in state; also adds a new category if the category of the new note
    * is not an empty string
@@ -27,6 +31,9 @@ class App extends Component {
    * @param newNote the note to be added to the notes list in state
    */
   handleAddNote = (newNote) => {
+    //I would prefer to take the logic out of setState and handle it before setState but still in this function.
+    //Then setState can be really easy for another engineer to understand what is changing.
+    
     this.setState(prevState => {
       if (newNote.category !== '' && this.state.categories.indexOf(newNote.category) == -1) {
         if (prevState.categories.length == 0) {
@@ -51,7 +58,11 @@ class App extends Component {
    * 
    * @param toDeleteNote the note to be deleted
    */
+
+//to in toDeleteNote signifies an action happening within this variable meaning this variable contains a function.
+//Instead handleRemoveNote simply accepts a single note. Change the variable name to be a noun.
   handleRemoveNote = (toDeleteNote) => {
+    //I like how you handled the logic in this function
     const newNotesList = this.state.notes.filter(note => note.id !== toDeleteNote.id);
     this.setState(prevState => {
       return { notes: newNotesList };
@@ -63,8 +74,11 @@ class App extends Component {
    * 
    * @param toRemoveCategory the category to be removed
    */
+  
+  //same comment with toRemoveCategory naming
   handleRemoveCategory = (toRemoveCategory) => {
     this.setState(state => {
+      //love the null check 
       const newCategoriesList = this.state.categories.filter(category => category !== toRemoveCategory && category !== null)
       const newNotesList = this.state.notes.map(note => {
         if (note.category == toRemoveCategory) {
@@ -105,6 +119,8 @@ class App extends Component {
    * https://www.robinwieruch.de/react-state-array-add-update-remove
    * https://stackoverflow.com/questions/45277306/check-if-item-exists-in-array-react
    */
+  
+  //put logic before this.setState
   handleEditNote = (id, newTitle, newDescription, newCategory) => {
     this.setState(state => {
       const notes = this.state.notes.map(item => {
