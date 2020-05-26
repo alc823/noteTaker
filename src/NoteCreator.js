@@ -1,50 +1,61 @@
 import React, { Component } from "react";
-import "./Note.css";
+import "./NoteCreator.css";
+import { isEmpty } from "lodash";
 import Typing from 'react-typing-animation';
 
-class Note extends React.Component {
+class NoteCreator extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            notes: [
-                { title: "Main course 1", description:"blah", id: 0 },
-            ],
-            categories: [],
             title: '',
             description: '',
             category: '',
+            showError: false,
         }
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // runs handleAddNote when "Make Note!" button is pressed
     // Code for getting current date: https://www.nicesnippets.com/blog/how-to-get-current-date-and-time-in-reactjs
-    handleSubmit(event) {
+    handleSubmit = () => {
+        this.setState({
+            showError: false,
+        });
         const newNote = {
             title: this.state.title,
             description: this.state.description,
             date: new Date().toLocaleString(),
-            id: this.props.notes[this.props.notes.length-1].id + 1,
+            id: 0,
             category: this.state.category
         }
-        this.props.handleAddNote(newNote)
+        if (!isEmpty(this.props.notes)) {
+            newNote.id = this.props.notes[this.props.notes.length-1].id + 1;
+        }
+        
+        if (newNote.title === '' || newNote.description === '') {
+            this.setState({
+                showError: true
+            });
+        } else {
+            this.props.handleAddNote(newNote);
+        }
+        // this.props.handleAddNote(newNote);
         this.setState({
             title: '',
             description: '',
             category: ''
-        })
+        });
     }
 
     // updates state every time the text fields for title, description, or category for a new potential note is changed
-    handleChange = event => {
+    handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         })
     }
 
+    // console.log()
     render() {
         return (
             <div className="page" style={{ justifyContent: "center" }}>
@@ -62,7 +73,8 @@ class Note extends React.Component {
                             Title:{"               "}<br/>
                             <input type="text" name="title" id="title" placeholder='' 
                             value={this.state.title} onChange={this.handleChange} className="textbox"
-                            style={{ width: 200}} />
+                            style={{ width: 200}} 
+                            maxLength='50'/>
                             </label>
                             <br/>
 
@@ -70,7 +82,8 @@ class Note extends React.Component {
                             Category:<br/>
                             <input type="text" name="category" id="category" placeholder='' value={this.state.category} 
                             onChange={this.handleChange} className="textbox"
-                            style={{ width: 200 }} />
+                            style={{ width: 200 }} 
+                            maxLength='50'/>
                             </label>
                             <br/>
                         </div>
@@ -80,7 +93,8 @@ class Note extends React.Component {
                             Description:<br/>
                             <textarea type="text" name="description" id="description" placeholder='' 
                             value={this.state.description} onChange={this.handleChange}
-                            style={{ height: 75, width: 400 }} className="textbox" />
+                            style={{ height: 75, width: 400 }} className="textbox" 
+                            maxLength='300'/>
                             </label>
                             <br/>
                         </div>
@@ -88,6 +102,11 @@ class Note extends React.Component {
                     
                 </form>
                 <br/>
+                {this.state.showError &&
+                    <div style={{color: "red"}}>
+                        Your note must have a title and description.
+                    </div>
+                }
                 <button className="makeButton" type="button" onClick={this.handleSubmit}>Make Note!</button>
 
 
@@ -96,14 +115,10 @@ class Note extends React.Component {
                 https://medium.com/zestgeek/how-to-handle-multiple-form-inputs-in-reactjs-2f68e3cf3cf8
                 https://reactjs.org/docs/forms.html
                  */}
-                <div>
-                    <br></br>
-                    <br></br>
-                </div>
 
             </div>
         )
     }
 }
 
-export default Note
+export default NoteCreator

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Note from "./Note.js";
+import NoteCreator from "./NoteCreator.js";
 import NoteList from "./NoteList.js";
 
 class App extends Component {
@@ -10,13 +10,15 @@ class App extends Component {
     super(props)
     this.state = {
       notes: [
-        { title: "Example Note", 
-        description:"This is an example description - here is where you write the body of your note!", 
-        date: new Date().toLocaleString(), 
-        id: 0, 
-        category: 'Task' },
+        // { title: "Example Note", 
+        // description:"This is an example description - here is where you write the body of your note!", 
+        // date: new Date().toLocaleString(), 
+        // id: 0, 
+        // category: 'Task' },
       ],
-      categories: ['Task'],
+      categories: [
+        // 'Task'
+      ],
     }
   }
 
@@ -147,7 +149,7 @@ class App extends Component {
   render() {
     return (
       <div className='page'>
-        <Note 
+        <NoteCreator 
           notes = {this.state.notes}
           handleAddNote = {this.handleAddNote}
         />

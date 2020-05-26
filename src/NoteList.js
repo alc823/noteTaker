@@ -24,16 +24,11 @@ class NoteList extends Component {
             chosenCategory: 'No Filter', // whatever option is currently selected in the filter dropdown menu
             finalizedCategory: 'No Filter', // the option that is submitted for the filter dropdown menu
         }
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleFilterChange = this.handleFilterChange.bind(this);
-        this.handleRemoveCategory = this.handleRemoveCategory.bind(this);
     }
 
     // Code for edit help: https://stackoverflow.com/questions/57362707/reactjs-show-edit-form-onclick
     // runs handleEditNote if Edit button on any particular note is pressed
-    handleSubmit(event) {
+    handleSubmit = () =>{
         this.props.handleEditNote(this.state.id, this.state.title, this.state.description, this.state.category)
         this.setState({
             isFormVisible: false,
@@ -41,21 +36,21 @@ class NoteList extends Component {
     }
 
     // updates state if title, description, or category text fields are changed in the edit form
-    handleChange = event => {
+    handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         })
     }
 
     // updates state if selected option in filter dropdown menu is changed
-    handleFilterChange = event => {
+    handleFilterChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         })
     }
 
     // runs handleRemoveCategory if the Remove Category buton is selected
-    handleRemoveCategory = event => {
+    handleRemoveCategory = () => {
         this.props.handleRemoveCategory(this.state.chosenCategory)
         this.setState({
             chosenCategory: "No Filter",
@@ -66,20 +61,21 @@ class NoteList extends Component {
     // Card Design: https://ant.design/components/card/#header
     // Dropdown Reference: https://reactjs.org/docs/forms.html 
     render() {
+        const {notes} = this.props
         return (
             <div className="bottomPart" style={{ display: "flex" }}>
                 <div className="notelist" style={{ flex: 3 }}>
                     <div className="sectionTitle">Note List</div>
                     <div style={{ display: "flex", flexWrap: "wrap" }}>
-                            {isEmpty(this.props.notes) &&
+                            {isEmpty(notes) &&
                             <div className="empty" style={{ display: "flex", justifyContent: "center" }}><br/><br/><br/>
                             No notes yet. Fill out the fields at the top of the page to add notes!
                             </div>
                             }
 
-                            {this.props.notes.map(note => {
+                            {notes.map(note => {
                                 return (
-                                    <div style={{ display: "flex", flexWrap: "wrap", marginBottom: 10 }}>
+                                    <div>
                                     { (this.state.finalizedCategory == "No Filter" || note.category == this.state.finalizedCategory) &&
                                         <div 
                                         style={{ 
@@ -90,27 +86,36 @@ class NoteList extends Component {
                                             marginTop: 5, 
                                             backgroundColor: "lightyellow",
                                             borderRadius: 10,
-                                            borderColor: "gray"
+                                            borderColor: "gray",
+                                            display: "flex",
+                                            justifyContent: "left",
                                         }}
                                         className="noteContent">
                                             <div style={{ marginTop: 10 }}>
                                             {(!this.state.isFormVisible || this.state.id !== note.id) && 
-                                            <Card title={note.title} bordered={true} className="card"
-                                            style={{ width: 300 }}
+                                            <div bordered={true} className="card"
+                                                style={{ 
+                                                    width: 300,
+                                                }}
                                             >
+                                                <div style={{margin: 20}}>{note.title}</div>
                                                 <div className="noteContent">
-                                                            <h5>
-                                                            <div className="fieldLabel">Last Edited:</div> <div className="field">{note.date}</div> <br/>
-                                                            {note.category !== '' &&
-                                                                <div><div className="fieldLabel">Category:</div> <div className="field">{note.category}</div> </div>
-                                                            }
-                                                            <br/>
-                                                            <div className="fieldLabel">Description:</div> <div className="field">{note.description}</div>
-                                                            <br/>
-                                                            {/* id: {note.id} */}
-                                                            </h5>
+                                                            <div style={{ margin: 20, textAlign: "left", flexWrap: "wrap", display: "flex"}}>
+                                                                <div style={{display: "inline", textDecoration: "underline"}}>Last Edited:</div>{" "}{note.date}
 
-                                                            <div>
+                                                                {note.category !== '' &&
+                                                                    <div>
+                                                                        <div style={{display: "inline", textDecoration: "underline"}}>Category:</div> {note.category}
+                                                                    </div>
+                                                                }
+                                                                <div style={{marginTop: 20}}>
+                                                                    <div style={{display: "inline", textDecoration: "underline" }}>Description:</div> {note.description}
+                                                                </div>
+                                                            </div>
+
+                                                            
+                                                </div>
+                                                <div>
                                                                 {" "}
                                                                 <button className="button" 
                                                                 onClick={() => this.setState({
@@ -125,7 +130,6 @@ class NoteList extends Component {
                                                                 <button className="button" onClick={() => this.props.handleRemoveNote(note)}>Remove</button>
                                                             </div>
                                                 </div>
-                                            </Card>
 
                                             }
                                             </div>
@@ -140,7 +144,8 @@ class NoteList extends Component {
                                                     Title:</label>{"   "}
                                                     <input type="text" name="title" id="title" placeholder={note.title} 
                                                     value={this.state.title} onChange={this.handleChange}
-                                                    style={{ width: 150, marginLeft: 38 }}/>
+                                                    style={{ width: 150, marginLeft: 38 }}
+                                                    maxLength='50'/>
                                                     
 
                                                     <br></br>
@@ -150,7 +155,8 @@ class NoteList extends Component {
                                                     <textarea type="text" name="description" id="description" 
                                                     placeholder={note.description} value={this.state.description} 
                                                     onChange={this.handleChange}
-                                                    style={{ height: 100, width: 150 }}/>
+                                                    style={{ height: 100, width: 150 }}
+                                                    maxLength='300'/>
                                                     
 
                                                     <br/>
@@ -159,7 +165,8 @@ class NoteList extends Component {
                                                     Category:</label>{" "}
                                                     <input type="text" name="category" id="category" placeholder={note.category} value={this.state.category} 
                                                     onChange={this.handleChange}
-                                                    style={{ width: 150, marginLeft: 13 }}/>
+                                                    style={{ width: 150, marginLeft: 13 }}
+                                                    maxLength='50'/>
                                                     
                                                 </form>
                                                 <button type="button" className="button" onClick={this.handleSubmit}>Save</button>
