@@ -30,8 +30,8 @@ class App extends Component {
    */
   handleAddNote = (newNote) => {
     this.setState(prevState => {
-      if (newNote.category !== '' && this.state.categories.indexOf(newNote.category) == -1) {
-        if (prevState.categories.length == 0) {
+      if (newNote.category !== '' && this.state.categories.indexOf(newNote.category) === -1) {
+        if (prevState.categories.length === 0) {
           return {
             notes: [...prevState.notes, newNote],
             categories: [newNote.category]
@@ -69,7 +69,7 @@ class App extends Component {
     this.setState(state => {
       const newCategoriesList = this.state.categories.filter(category => category !== toRemoveCategory && category !== null)
       const newNotesList = this.state.notes.map(note => {
-        if (note.category == toRemoveCategory) {
+        if (note.category === toRemoveCategory) {
           const adjustedNote = {
             title: note.title,
             description: note.description,
@@ -110,7 +110,7 @@ class App extends Component {
   handleEditNote = (id, newTitle, newDescription, newCategory) => {
     this.setState(state => {
       const notes = this.state.notes.map(item => {
-        if (item.id == id) {
+        if (item.id === id) {
           const adjustedItem = {
             title: newTitle,
             description: newDescription,
@@ -124,8 +124,8 @@ class App extends Component {
         }
       });
       
-      if (this.state.categories.indexOf(newCategory) == -1 && newCategory !== '') {
-        if (this.state.categories.length == 0) {
+      if (this.state.categories.indexOf(newCategory) === -1 && newCategory !== '') {
+        if (this.state.categories.length === 0) {
           return {
             notes: notes,
             categories: [newCategory]

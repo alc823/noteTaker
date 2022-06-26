@@ -76,10 +76,9 @@ class NoteList extends Component {
                             {notes.map(note => {
                                 return (
                                     <div>
-                                    { (this.state.finalizedCategory == "No Filter" || note.category == this.state.finalizedCategory) &&
+                                    { (this.state.finalizedCategory === "No Filter" || note.category === this.state.finalizedCategory) &&
                                         <div 
                                         style={{ 
-                                            borderColor: "black", 
                                             borderStyle: "double", 
                                             width:300, 
                                             marginLeft: 5, 
@@ -100,16 +99,16 @@ class NoteList extends Component {
                                             >
                                                 <div style={{margin: 20}}>{note.title}</div>
                                                 <div className="noteContent">
-                                                            <div style={{ margin: 20, textAlign: "left", flexWrap: "wrap", display: "flex"}}>
+                                                            <div style={{ margin: 20, textAlign: "left", flexWrap: "wrap", display: "flex", width:300}}>
                                                                 <div style={{display: "inline", textDecoration: "underline"}}>Last Edited:</div>{" "}{note.date}
 
                                                                 {note.category !== '' &&
-                                                                    <div>
+                                                                    <div style={{width:300}}>
                                                                         <div style={{display: "inline", textDecoration: "underline"}}>Category:</div> {note.category}
                                                                     </div>
                                                                 }
                                                                 <div style={{marginTop: 20}}>
-                                                                    <div style={{display: "inline", textDecoration: "underline" }}>Description:</div> {note.description}
+                                                                    <div style={{display: "inline", textDecoration: "underline", textAlign: "left", marginLeft: 0, paddingLeft:0 }}>Description:</div> {note.description}
                                                                 </div>
                                                             </div>
 
@@ -134,7 +133,7 @@ class NoteList extends Component {
                                             }
                                             </div>
 
-                                            {this.state.isFormVisible && this.state.id == note.id && 
+                                            {this.state.isFormVisible && this.state.id === note.id && 
                                             <Card className="card" 
                                             style={{ width: 300, marginTop: 20, marginBottom: 10 }}
                                             >

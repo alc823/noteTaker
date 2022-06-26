@@ -2,9 +2,10 @@
   background-image: url('https://png.pngtree.com/thumb_back/fw800/back_our/20190625/ourmid/pngtree-overlooking-desk-computer-background-illustration-image_259797.jpg');
   height: 100%;
   background-size: cover;
-  padding-bottom: 50px;
+  padding-bottom: 5vh;
   margin-top: 0px;
   margin-bottom: 0px;
   padding-top: 0px;
+  background-color: lightblue;
   /* clear: both; */
 }

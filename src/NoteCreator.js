@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./NoteCreator.css";
 import { isEmpty } from "lodash";
 import Typing from 'react-typing-animation';
@@ -62,18 +62,18 @@ class NoteCreator extends React.Component {
                 
                 <div className="title" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", marginLeft: 30 }}>
                     <Typing>Note Taker</Typing>
-                    <img src="https://www.freepnglogos.com/uploads/pencil-png/pencil-png-transparent-png-pictures-icons-and-png-2.png"
-                    style={{ height: 80, width: 80, paddingTop: 20 }}></img>
+                    <img src="https://www.freepnglogos.com/uploads/pencil-png/pencil-png-transparent-png-pictures-icons-and-png-2.png" alt="cartoon pencil"
+                    style={{ height: '15vh', width: '10vw', paddingTop: '5vh' }}></img>
                 </div>
 
                 <form onSubmit={this.handleSubmit} className="form">
                     <div style={{ display: "flex" }} className="makeNote">
-                        <div style={{ flex: 1, paddingLeft: 325, paddingRight: 0, marginRight: 0 }}>
+                        <div style={{ flex: 1, paddingLeft: '20vw', paddingRight: 0, marginRight: 0 }}>
                             <label className="label">
                             Title:{"               "}<br/>
                             <input type="text" name="title" id="title" placeholder='' 
                             value={this.state.title} onChange={this.handleChange} className="textbox"
-                            style={{ width: 200}} 
+                            style={{ width: '15vw'}} 
                             maxLength='50'/>
                             </label>
                             <br/>
@@ -82,18 +82,18 @@ class NoteCreator extends React.Component {
                             Category:<br/>
                             <input type="text" name="category" id="category" placeholder='' value={this.state.category} 
                             onChange={this.handleChange} className="textbox"
-                            style={{ width: 200 }} 
+                            style={{ width: '15vw' }} 
                             maxLength='50'/>
                             </label>
                             <br/>
                         </div>
 
-                        <div style={{ flex: 2, paddingRight: 300, paddingLeft: 0, marginLeft: 0 }}>
+                        <div style={{ flex: 2, paddingRight: '20vw', paddingLeft: 0, marginLeft: 0 }}>
                             <label className="label">
                             Description:<br/>
                             <textarea type="text" name="description" id="description" placeholder='' 
                             value={this.state.description} onChange={this.handleChange}
-                            style={{ height: 75, width: 400 }} className="textbox" 
+                            style={{ height: '15vh', width: '25vw' }} className="textbox" 
                             maxLength='300'/>
                             </label>
                             <br/>
