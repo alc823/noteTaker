@@ -1,9 +1,14 @@
-# Description
+# About this project
+
+![Screenshot image of website](./website_screenshot.png)
+
 This project is part of a group of projects I worked on while participating in an internship preparation program called Launch (by HackCville). This was the second solo project, and it was assigned after the second technical workshop in the program, which was also the second time I had ever worked with React. The note taker app was an exercise in getting accustomed to state; this app allows users to make notes, assign categories to each note, and filter notes by category. Some emphasis was put on making the application visually appealing; we were encouraged, with this project, to experiment with how much technical functionality we could implement as well.
 <br><br>
 While this was a great exercise in experimenting with React and front-end design, reflecting on this project, there are a number of improvements I would work on if I returned to this project. Most recently, I edited a bit of the code to make the project slightly more responsive, and I definitely would pursue this endeavor further to make the website flexible so that it remains visually pleasing for any screen. Another future direction to take is to implement user login and allow users to save their notes. Currently, the website will discard any information stored upon refresh. In order to allow notes to persist over time, authentication can be added and user data can be stored using Firebase.
 <br><br>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Deployment link for application: https://note-taker-alc823.netlify.app.
+<br><br>
+Credit to [this source](https://png.pngtree.com/thumb_back/fw800/back_our/20190625/ourmid/pngtree-overlooking-desk-computer-background-illustration-image_259797.jpg) for the background image used in this application.
 
 
 # How to run the project (from React)
