@@ -1,5 +1,10 @@
+# Description
+This project is part of a group of projects I worked on while participating in an internship preparation program called Launch (by HackCville). This was the second solo project, and it was assigned after the second technical workshop in the program. The note taker app was an exercise in getting accustomed to state; this app allows users to make notes, assign categories to each note, and filter notes by category. Some emphasis was put on making the application visually appealing; we were encouraged, with this project, to experiment with how much technical functionality we could implement as well.
+<br>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Deployment link for application: https://note-taker-alc823.netlify.app.
 
+
+# How to run the project (from React)
 ## Available Scripts
 
 In the project directory, you can run:
